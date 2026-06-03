@@ -1,0 +1,14 @@
+compte_id,compte_libelle,classe
+401,Fournisseurs,Passif
+411,Clients,Actif
+512,Banque,Actif
+606,Achats non stockés,Charge
+615,Maintenance,Charge
+622,Honoraires,Charge
+623,Publicité,Charge
+625,Déplacements,Charge
+626,Frais postaux et télécoms,Charge
+641,Salaires,Charge
+681,Dotations aux amortissements,Charge
+701,Ventes énergie,Produit
+706,Prestations de services,Produit

@@ -1,0 +1,21 @@
+projet_id,projet_nom,region,capacite_mwc,date_debut,statut,budget_total
+PROJ_001,Projet Nord - Phase 1,Nord,4.06,2024-09-27,Terminé,1237451.12
+PROJ_002,Projet Sud-Est - Phase 1,Sud-Est,1.98,2024-08-02,En cours,1745734.68
+PROJ_003,Projet Ouest - Phase 1,Ouest,6.21,2024-05-31,Terminé,207182.0
+PROJ_004,Projet Centre - Phase 1,Centre,7.36,2024-10-20,En cours,1985201.96
+PROJ_005,Projet Est - Phase 1,Est,6.37,2024-01-22,En cours,143818.61
+PROJ_006,Projet Nord - Phase 2,Nord,5.49,2024-06-18,En cours,1950135.49
+PROJ_007,Projet Sud-Est - Phase 2,Sud-Est,2.71,2024-06-23,Terminé,826677.78
+PROJ_008,Projet Ouest - Phase 2,Ouest,9.84,2024-05-10,Planifié,1392584.32
+PROJ_009,Projet Centre - Phase 2,Centre,4.78,2024-09-30,Planifié,1934700.86
+PROJ_010,Projet Est - Phase 2,Est,8.18,2024-09-21,En cours,538698.27
+PROJ_011,Projet Nord - Phase 3,Nord,2.79,2024-09-20,En cours,1827708.76
+PROJ_012,Projet Sud-Est - Phase 3,Sud-Est,2.96,2024-01-02,En cours,495089.16
+PROJ_013,Projet Ouest - Phase 3,Ouest,5.89,2024-07-09,Planifié,954532.85
+PROJ_014,Projet Centre - Phase 3,Centre,4.25,2024-09-26,Terminé,720427.46
+PROJ_015,Projet Est - Phase 3,Est,5.92,2024-09-08,En cours,718127.63
+PROJ_016,Projet Nord - Phase 4,Nord,4.19,2024-02-22,Terminé,1933985.08
+PROJ_017,Projet Sud-Est - Phase 4,Sud-Est,6.27,2024-02-10,En cours,414007.18
+PROJ_018,Projet Ouest - Phase 4,Ouest,0.65,2024-01-09,Terminé,477559.79
+PROJ_019,Projet Centre - Phase 4,Centre,0.55,2024-05-18,En cours,1451549.71
+PROJ_020,Projet Est - Phase 4,Est,8.01,2024-09-17,Planifié,1337046.35

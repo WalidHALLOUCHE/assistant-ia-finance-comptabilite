@@ -1,0 +1,11 @@
+centre_cout_id,centre_cout,responsable
+1,Finance,Resp_Finance
+2,Comptabilité,Resp_Comptabilité
+3,Contrôle de Gestion,Resp_Contrôle_de_Gestion
+4,IT,Resp_IT
+5,RH,Resp_RH
+6,Juridique,Resp_Juridique
+7,Achats,Resp_Achats
+8,Maintenance,Resp_Maintenance
+9,Construction,Resp_Construction
+10,Exploitation,Resp_Exploitation

@@ -167,7 +167,7 @@ def build_vector_store():
     try:
         embeddings = provider.get_embeddings_model()
 
-        vector_store_path = settings.vector_store_path
+        vector_store_path = settings.dynamic_vector_store_path
         os.makedirs(vector_store_path, exist_ok=True)
 
         # If Chroma is available, use it

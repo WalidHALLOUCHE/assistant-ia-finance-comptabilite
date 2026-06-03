@@ -95,7 +95,7 @@ class RAGPipeline:
     def __init__(self):
         """Initialize RAG pipeline."""
         self.documents_dir = Path(__file__).parent.parent / "docs"
-        self.vector_store_path = settings.vector_store_path
+        self.vector_store_path = settings.dynamic_vector_store_path
         self.vectorstore = None
         self.llm = None
         self.embeddings = None
@@ -103,18 +103,31 @@ class RAGPipeline:
 
     def _initialize(self):
         """Initialize LLM and vector store."""
+        self.init_error = None
         try:
             provider = LLMProvider()
             self.llm = provider.get_chat_model()
             self.embeddings = provider.get_embeddings_model()
             self._load_or_build_vector_store()
         except Exception as e:
+            import traceback
+            self.init_error = f"{e}\n\n{traceback.format_exc()}"
             print(f"⚠️  RAG Pipeline initialization error: {e}")
 
     def _load_or_build_vector_store(self):
         """Load existing vector store or build a new one."""
         if os.path.exists(self.vector_store_path):
-            # If Chroma is available, try to load it
+            # Check if it's a SimpleVectorStore
+            if os.path.exists(os.path.join(self.vector_store_path, "vectors.npz")):
+                try:
+                    simple = SimpleVectorStore.load(self.vector_store_path)
+                    self.vectorstore = simple
+                    print("✅ Simple vector store loaded")
+                    return
+                except Exception as e:
+                    print(f"⚠️  Could not load simple vector store: {e}")
+
+            # Otherwise, if Chroma is available, try to load it
             if Chroma is not None:
                 try:
                     self.vectorstore = Chroma(
@@ -125,15 +138,6 @@ class RAGPipeline:
                     return
                 except Exception as e:
                     print(f"⚠️  Could not load Chroma vector store: {e}")
-
-            # Try SimpleVectorStore persisted format
-            try:
-                simple = SimpleVectorStore.load(self.vector_store_path)
-                self.vectorstore = simple
-                print("✅ Simple vector store loaded")
-                return
-            except Exception as e:
-                print(f"⚠️  Could not load simple vector store: {e}")
 
             # Fallback to building
             self._build_vector_store()
@@ -195,7 +199,7 @@ class RAGPipeline:
 
     def query(self, question: str, k: int = 3) -> Tuple[str, List[str]]:
         """Query the RAG pipeline."""
-        if not self.vectorstore or not self.llm:
+        if self.vectorstore is None or self.llm is None:
             return self._handle_no_llm(question), []
 
         try:
@@ -232,10 +236,14 @@ class RAGPipeline:
 
     def _handle_no_llm(self, question: str) -> str:
         """Handle case where LLM is not available."""
+        err_msg = ""
+        if hasattr(self, "init_error") and self.init_error:
+            err_msg = f"\n\n**Détail de l'erreur d'initialisation :**\n```\n{self.init_error}\n```"
+
         return (
             "⚠️  Le modèle IA configuré n'est pas disponible pour générer une réponse. "
             "Vérifiez la configuration du provider IA dans `.env` et que le modèle configuré est accessible. "
-            f"\n\nVotre question: {question}"
+            f"\n\nVotre question: {question}{err_msg}"
         )
 
     def search_documents(self, query: str, k: int = 5) -> List[Tuple[str, str]]:

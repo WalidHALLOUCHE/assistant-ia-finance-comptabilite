@@ -11,40 +11,45 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
     # AI provider settings: ollama (local), gemini (API), or groq (API chat).
-    ai_provider: str = os.getenv("AI_PROVIDER", "ollama").lower()
+    ai_provider: str = "ollama"
 
     # Ollama settings (open-source, local).
-    ollama_base_url: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-    ollama_model: str = os.getenv("OLLAMA_MODEL", "mistral")
-    embedding_model: str = os.getenv("EMBEDDING_MODEL", "nomic-embed-text")
-    ollama_timeout: int = int(os.getenv("OLLAMA_TIMEOUT", "20"))
+    ollama_base_url: str = "http://localhost:11434"
+    ollama_model: str = "mistral"
+    embedding_model: str = "nomic-embed-text"
+    ollama_timeout: int = 20
 
     # Gemini API settings.
-    gemini_api_key: Optional[str] = os.getenv("GEMINI_API_KEY")
-    gemini_model: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
-    gemini_embedding_model: str = os.getenv("GEMINI_EMBEDDING_MODEL", "models/gemini-embedding-001")
+    gemini_api_key: Optional[str] = None
+    gemini_model: str = "gemini-2.5-flash"
+    gemini_embedding_model: str = "models/gemini-embedding-001"
 
     # Groq API settings.
-    groq_api_key: Optional[str] = os.getenv("GROQ_API_KEY")
-    groq_model: str = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+    groq_api_key: Optional[str] = None
+    groq_model: str = "llama-3.3-70b-versatile"
 
     # Embeddings: ollama for local, gemini for full API RAG.
     # Groq does not provide embeddings for this pipeline.
-    embedding_provider: str = os.getenv("EMBEDDING_PROVIDER", "").lower()
+    embedding_provider: str = ""
 
     # Vector store settings.
-    vector_store_path: str = os.getenv("VECTOR_STORE_PATH", "vector_store")
-    chunk_size: int = int(os.getenv("CHUNK_SIZE", "1000"))
-    chunk_overlap: int = int(os.getenv("CHUNK_OVERLAP", "200"))
+    vector_store_path: str = "vector_store"
+    chunk_size: int = 1000
+    chunk_overlap: int = 200
 
     # Application settings.
-    log_level: str = os.getenv("LOG_LEVEL", "INFO")
-    max_tokens: int = int(os.getenv("MAX_TOKENS", "1500"))
-    temperature: float = float(os.getenv("TEMPERATURE", "0.7"))
+    log_level: str = "INFO"
+    max_tokens: int = 1500
+    temperature: float = 0.7
 
     class Config:
         env_file = ".env"
         extra = "ignore"
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.ai_provider = self.ai_provider.lower()
+        self.embedding_provider = self.embedding_provider.lower()
 
     def resolved_embedding_provider(self) -> str:
         """Return the embedding provider to use."""
@@ -53,6 +58,11 @@ class Settings(BaseSettings):
         if self.ai_provider == "gemini":
             return "gemini"
         return "ollama"
+
+    @property
+    def dynamic_vector_store_path(self) -> str:
+        """Return a provider-specific vector store path to prevent embedding dimension mismatch."""
+        return f"{self.vector_store_path}_{self.resolved_embedding_provider()}"
 
     def validate_ai_configuration(self) -> tuple[bool, str]:
         """Validate the selected AI provider configuration."""

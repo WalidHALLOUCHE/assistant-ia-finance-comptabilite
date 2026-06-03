@@ -227,19 +227,57 @@ def render_chat():
             )
             return answer, ["données comptables"]
 
-        if (
-            "fournisseur" in normalized_question
-            and any(term in normalized_question for term in ["plus grand", "plus gros", "max", "maximum", "top"])
-        ):
+        if "fournisseur" in normalized_question:
             supplier_analyzer = analyzers["supplier"]
-            top_suppliers = supplier_analyzer.get_top_suppliers(1)
-            if top_suppliers.empty:
-                return "Je n'ai trouvé aucune facture fournisseur dans les données chargées.", ["données fournisseurs"]
+            
+            if any(term in normalized_question for term in ["plus grand", "plus gros", "max", "maximum", "top"]):
+                top_suppliers = supplier_analyzer.get_top_suppliers(1)
+                if top_suppliers.empty:
+                    return "Je n'ai trouvé aucune facture fournisseur dans les données chargées.", ["données fournisseurs"]
 
-            supplier_name = top_suppliers.iloc[0]["fournisseur_nom"]
-            supplier_amount = float(top_suppliers.iloc[0]["total_amount"])
-            answer = f"Le fournisseur avec le plus grand montant est {supplier_name} avec un total de €{supplier_amount:,.2f}."
-            return answer, ["données fournisseurs"]
+                supplier_name = top_suppliers.iloc[0]["fournisseur_nom"]
+                supplier_amount = float(top_suppliers.iloc[0]["total_amount"])
+                answer = f"Le fournisseur avec le plus grand montant est {supplier_name} avec un total de €{supplier_amount:,.2f}."
+                return answer, ["données fournisseurs"]
+                
+            if any(term in normalized_question for term in ["plus petit", "plus faible", "min", "minimum", "bottom"]):
+                # Retrieve all suppliers to find the smallest one
+                all_suppliers = supplier_analyzer.get_top_suppliers(1000000)
+                if all_suppliers.empty:
+                    return "Je n'ai trouvé aucune facture fournisseur dans les données chargées.", ["données fournisseurs"]
+
+                smallest_supplier = all_suppliers.iloc[-1]
+                supplier_name = smallest_supplier["fournisseur_nom"]
+                supplier_amount = float(smallest_supplier["total_amount"])
+                answer = f"Le fournisseur avec le plus petit montant est {supplier_name} avec un total de €{supplier_amount:,.2f}."
+                return answer, ["données fournisseurs"]
+
+        if "facture" in normalized_question:
+            supplier_analyzer = analyzers["supplier"]
+            
+            if any(term in normalized_question for term in ["plus élevée", "plus grosse", "plus grand", "max", "maximum", "top"]):
+                df = supplier_analyzer.df
+                if df.empty:
+                    return "Je n'ai trouvé aucune facture dans les données chargées.", ["données fournisseurs"]
+                    
+                top_invoice = df.loc[df['montant_ttc'].idxmax()]
+                inv_id = top_invoice['facture_id']
+                supp_name = top_invoice.get('fournisseur_nom', top_invoice['fournisseur_id'])
+                amount = float(top_invoice['montant_ttc'])
+                answer = f"La facture la plus élevée est la facture {inv_id} du fournisseur {supp_name} pour un montant de €{amount:,.2f}."
+                return answer, ["données fournisseurs"]
+                
+            if any(term in normalized_question for term in ["plus petite", "plus faible", "min", "minimum", "bottom"]):
+                df = supplier_analyzer.df
+                if df.empty:
+                    return "Je n'ai trouvé aucune facture dans les données chargées.", ["données fournisseurs"]
+                    
+                bot_invoice = df.loc[df['montant_ttc'].idxmin()]
+                inv_id = bot_invoice['facture_id']
+                supp_name = bot_invoice.get('fournisseur_nom', bot_invoice['fournisseur_id'])
+                amount = float(bot_invoice['montant_ttc'])
+                answer = f"La facture la plus petite est la facture {inv_id} du fournisseur {supp_name} pour un montant de €{amount:,.2f}."
+                return answer, ["données fournisseurs"]
 
         return None
     
@@ -321,7 +359,12 @@ def render_accounting():
             unbalanced = accounting.get_unbalanced_entries()
             st.metric("Nombre", len(unbalanced))
             if len(unbalanced) > 0:
-                st.dataframe(unbalanced[["ecriture_id", "montant", "libelle"]], use_container_width=True)
+                # Gestion dynamique des colonnes selon que l'on ait 'montant' ou 'debit' / 'credit'
+                display_cols = ["ecriture_id", "libelle"]
+                for col in ["montant", "debit", "credit"]:
+                    if col in unbalanced.columns:
+                        display_cols.append(col)
+                st.dataframe(unbalanced[display_cols], use_container_width=True)
         
         with col2:
             st.markdown("#### Écritures sans centre de coût")
@@ -633,10 +676,35 @@ def main():
     with st.sidebar:
         st.image("https://img.icons8.com/color/96/000000/accounting.png", width=80)
         st.markdown("# 🏛️ Finance IA")
-        
+
+        # Provider Selector
+        provider_options = {
+            "Ollama (Local)": "ollama",
+            "Gemini (API)": "gemini",
+            "Groq (API)": "groq"
+        }
+
+        # Get current index based on settings
+        current_provider = settings.ai_provider
+        current_index = 0
+        for i, val in enumerate(provider_options.values()):
+            if val == current_provider:
+                current_index = i
+                break
+
+        selected_label = st.selectbox(
+            "🤖 Moteur IA",
+            options=list(provider_options.keys()),
+            index=current_index
+        )
+
+        # Update settings dynamically for the session
+        settings.ai_provider = provider_options[selected_label]
+
+        st.divider()
+
         page = st.radio(
-            "Navigation",
-            [
+            "Navigation",            [
                 "🏠 Accueil",
                 "💬 Chat IA",
                 "📝 Comptabilité",
