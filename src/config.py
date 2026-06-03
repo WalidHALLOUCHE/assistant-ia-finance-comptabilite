@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     # Gemini API settings.
     gemini_api_key: Optional[str] = os.getenv("GEMINI_API_KEY")
     gemini_model: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
-    gemini_embedding_model: str = os.getenv("GEMINI_EMBEDDING_MODEL", "models/embedding-001")
+    gemini_embedding_model: str = os.getenv("GEMINI_EMBEDDING_MODEL", "models/gemini-embedding-001")
 
     # Groq API settings.
     groq_api_key: Optional[str] = os.getenv("GROQ_API_KEY")
