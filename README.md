@@ -373,7 +373,7 @@ enterprise-ai-accounting-finance-assistant/
 
 - **Accueil** : [assets/screenshots/01_accueil.png](assets/screenshots/01_accueil.png)
 - **Chat IA** : [assets/screenshots/02_chat_ia.png](assets/screenshots/02_chat_ia.png)
-- Dossier complet des captures : `captures d'images/` (contient des captures d'écran supplémentaires montrant les vues Comptabilité, Fournisseurs, Trésorerie, Budget, etc.).
+- Dossier complet des captures : `assets/screenshots/` (contient des captures d'écran supplémentaires montrant les vues Comptabilité, Fournisseurs, Trésorerie, Budget, etc.).
 
 
 ## 🔧 Configuration Avancée
