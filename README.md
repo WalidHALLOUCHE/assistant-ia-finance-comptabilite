@@ -7,6 +7,12 @@
 [![Streamlit](https://img.shields.io/badge/Framework-Streamlit-red)](https://streamlit.io/)
 [![Gemini API](https://img.shields.io/badge/AI-Gemini%20%2B%20Groq-yellow)](https://ai.google.dev/)
 
+## Aperçu rapide
+
+![Accueil](assets/screenshots/01_accueil.png)
+
+![Chat IA](assets/screenshots/02_chat_ia.png)
+
 ## 🎯 Objectif du Projet
 
 Ce projet démontre comment **créer et déployer une IA métier d'entreprise** pour assister une Direction Administrative et Financière (DAF) sur :
@@ -317,25 +323,9 @@ enterprise-ai-accounting-finance-assistant/
 
 ## Screenshots
 
-- Aperçu de l'interface :
-
-  ![UI demo](assets/demo_commentaires/2026-06-03_ui_screenshot.jpg)
-
+- **Accueil** : [assets/screenshots/01_accueil.png](assets/screenshots/01_accueil.png)
+- **Chat IA** : [assets/screenshots/02_chat_ia.png](assets/screenshots/02_chat_ia.png)
 - Dossier complet des captures : `captures d'images/` (contient des captures d'écran supplémentaires montrant les vues Comptabilité, Fournisseurs, Trésorerie, Budget, etc.).
-
-## Aperçu rapide
-
-Voici l'image d'accueil et la vue du chat IA (extraits importants pour la démonstration) :
-
-<p align="center">
-  <img src="captures%20d%27images/image_acceuil.png" alt="Accueil" width="720" />
-</p>
-
-<p align="center">
-  <img src="captures%20d%27images/Chat_ia_01.png" alt="Chat IA" width="720" />
-</p>
-
-Les autres captures sont disponibles dans le dossier `captures d'images/`.
 
 
 ## 🔧 Configuration Avancée
