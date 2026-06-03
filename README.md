@@ -1,4 +1,4 @@
-# 🏛️ Enterprise AI Accounting & Finance Assistant
+# 🏛️ Assistant IA Finance et Comptabilité
 
 **Assistant IA pour la comptabilité, la finance et le contrôle de gestion**
 
@@ -314,6 +314,15 @@ enterprise-ai-accounting-finance-assistant/
 
 - **Extrait de commentaire généré** : [assets/demo_commentaires/2026-06-03_commentaire_demo.md](assets/demo_commentaires/2026-06-03_commentaire_demo.md)
 - **Capture UI** : [assets/demo_commentaires/2026-06-03_ui_screenshot.jpg](assets/demo_commentaires/2026-06-03_ui_screenshot.jpg)
+
+## Screenshots
+
+- Aperçu de l'interface :
+
+  ![UI demo](assets/demo_commentaires/2026-06-03_ui_screenshot.jpg)
+
+- Dossier complet des captures : `captures d'images/` (contient des captures d'écran supplémentaires montrant les vues Comptabilité, Fournisseurs, Trésorerie, Budget, etc.).
+
 
 ## 🔧 Configuration Avancée
 
