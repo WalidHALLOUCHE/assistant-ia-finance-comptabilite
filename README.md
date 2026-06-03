@@ -100,7 +100,7 @@ Ce projet démontre comment **créer et déployer une IA métier d'entreprise** 
 - Appliquer les règles de contrôle comptable automatiquement
 - Analyser budget vs réel et détecter les écarts
 - Générer des commentaires de gestion contextualisés
-- Concevoir un modèle Star Schema pour Power BI
+ - Concevoir des tableaux de bord financiers clairs et actionnables
 
 **📊 Intelligence Métier**
 - Analyser les données financières et identifier les anomalies
@@ -171,13 +171,6 @@ Ce projet démontre comment **créer et déployer une IA métier d'entreprise** 
 - Recommandations intelligentes
 - Rédaction type DAF/CFO
 - Export en Markdown
-
-### 8. 📊 Power BI Ready
-- Modèle Star Schema documenté
-- 100+ mesures DAX complètes
-- 7 dashboards pré-conçus
-- Guide connecteur données CSV
-- Export Power BI recommandé
 
 ## 🏗️ Architecture
 
@@ -359,12 +352,6 @@ assistant-ia-finance-comptabilite/
 │   ├── gouvernance_ia_finance.md
 │   └── cas_usage_ia_comptabilite_finance.md
 │
-├── powerbi/                            # Documentation Power BI
-│   ├── README_powerbi.md
-│   ├── data_model_star_schema.md
-│   ├── dax_measures.md
-│   └── dashboard_specification.md
-│
 ├── tests/                              # Tests unitaires
 │   ├── test_accounting_analyzer.py
 │   ├── test_finance_analyzer.py
@@ -388,12 +375,6 @@ assistant-ia-finance-comptabilite/
 - [Catalogue KPI Finance](docs/catalogue_kpi_finance.md)
 - [Dictionnaire des données](docs/dictionnaire_donnees_finance.md)
 - [Cas d'usage IA](docs/cas_usage_ia_comptabilite_finance.md)
-
-### Pour Power BI
-- [Guide Power BI complet](powerbi/README_powerbi.md)
-- [Modèle Star Schema](powerbi/data_model_star_schema.md)
-- [Mesures DAX](powerbi/dax_measures.md)
-- [Spécification dashboards](powerbi/dashboard_specification.md)
 
 ## 🔎 Démo rapide
 
