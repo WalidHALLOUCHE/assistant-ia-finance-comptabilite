@@ -323,6 +323,20 @@ enterprise-ai-accounting-finance-assistant/
 
 - Dossier complet des captures : `captures d'images/` (contient des captures d'écran supplémentaires montrant les vues Comptabilité, Fournisseurs, Trésorerie, Budget, etc.).
 
+## Aperçu rapide
+
+Voici l'image d'accueil et la vue du chat IA (extraits importants pour la démonstration) :
+
+<p align="center">
+  <img src="captures%20d%27images/image_acceuil.png" alt="Accueil" width="720" />
+</p>
+
+<p align="center">
+  <img src="captures%20d%27images/Chat_ia_01.png" alt="Chat IA" width="720" />
+</p>
+
+Les autres captures sont disponibles dans le dossier `captures d'images/`.
+
 
 ## 🔧 Configuration Avancée
 
