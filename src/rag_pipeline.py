@@ -219,7 +219,7 @@ class RAGPipeline:
             except Exception as llm_error:
                 excerpt = "\n\n".join(doc.page_content[:350].strip() for doc in docs[:2])
                 answer = (
-                    "⚠️ Le modèle local n'a pas pu générer une réponse complète. "
+                    "⚠️ Le modèle IA configuré n'a pas pu générer une réponse complète. "
                     f"Détail technique: {llm_error}\n\n"
                     "Extraits pertinents retrouvés dans la base documentaire:\n"
                     f"{excerpt}"
@@ -233,8 +233,8 @@ class RAGPipeline:
     def _handle_no_llm(self, question: str) -> str:
         """Handle case where LLM is not available."""
         return (
-            "⚠️  Le modèle local n'est pas disponible pour générer une réponse. "
-            "Vérifiez qu'Ollama est en cours d'exécution et que le modèle configuré est accessible. "
+            "⚠️  Le modèle IA configuré n'est pas disponible pour générer une réponse. "
+            "Vérifiez la configuration du provider IA dans `.env` et que le modèle configuré est accessible. "
             f"\n\nVotre question: {question}"
         )
 

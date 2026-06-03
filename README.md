@@ -13,19 +13,29 @@
 
 ![Chat IA](assets/screenshots/02_chat_ia.png)
 
-## APIs IA utilisées
+## Modes IA disponibles
 
-L'assistant peut fonctionner avec deux fournisseurs IA :
+L'application fonctionne en **local avec Ollama** par défaut, mais elle peut aussi utiliser des APIs cloud si vous ne voulez pas dépendre uniquement du modèle local :
 
-- **Gemini API** : fournisseur principal recommandé pour le chat, le RAG et les embeddings.
-- **Groq API** : fournisseur optionnel en fallback pour garder l'assistant disponible si Gemini n'est pas configuré.
+- **Ollama local** : mode par défaut, sans clé API.
+- **Gemini API** : chat, RAG et embeddings via API Google.
+- **Groq API** : chat via API Groq. Pour un RAG 100% API avec Groq, utilisez les embeddings Gemini.
 
-Configuration dans `.env` :
+Exemples de configuration dans `.env` :
 
 ```env
+# Mode local
+AI_PROVIDER=ollama
+
+# Mode API Gemini
 AI_PROVIDER=gemini
 GEMINI_API_KEY=your_gemini_key
+
+# Mode API Groq + embeddings Gemini pour le RAG
+AI_PROVIDER=groq
 GROQ_API_KEY=your_groq_key
+EMBEDDING_PROVIDER=gemini
+GEMINI_API_KEY=your_gemini_key
 ```
 
 ## 🎯 Objectif du Projet
@@ -160,8 +170,8 @@ Ce projet démontre comment **créer et déployer une IA métier d'entreprise** 
 
 ### Stack Technique
 - **Frontend** : Streamlit
-- **LLM** : Gemini API (principal) + Groq (fallback)
-- **Embeddings** : Gemini Embedding Model
+- **LLM** : Ollama local, Gemini API ou Groq API
+- **Embeddings** : Ollama/Nomic Embed Text ou Gemini Embeddings
 - **RAG** : LangChain + ChromaDB
 - **Analytics** : Pandas + Plotly
 - **Data** : CSV + SQLite possible
@@ -174,7 +184,7 @@ Ce projet démontre comment **créer et déployer une IA métier d'entreprise** 
 ```bash
 Python 3.11+
 pip (ou conda)
-Gemini API key (gratuite) OU Groq API key
+Ollama pour le mode local, ou une clé API Gemini/Groq pour le mode cloud
 ```
 
 ### 1. Cloner le projet
@@ -196,27 +206,46 @@ venv\Scripts\activate  # Windows
 pip install -r requirements.txt
 ```
 
-### 4. Configurer les clés API
+### 4. Choisir le mode IA
 
-**Option A : Gemini API (Recommandé)**
+**Option A : Ollama local (par défaut)**
+1. Installer Ollama : https://ollama.ai
+2. Lancer Ollama
+3. Télécharger les modèles :
+```bash
+ollama pull mistral
+ollama pull nomic-embed-text
+```
+
+**Option B : Gemini API**
 1. Aller sur https://aistudio.google.com/app/apikey
 2. Cliquer "Create API Key"
-3. Copier la clé
+3. Copier la clé dans `.env`
 
-**Option B : Groq API**
+**Option C : Groq API**
 1. Aller sur https://console.groq.com/keys
 2. Créer une API key
-3. Copier la clé
+3. Copier la clé dans `.env`
 
 ### 5. Créer fichier .env
 ```bash
 cp .env.example .env
 ```
 
-Éditer `.env` et ajouter votre clé :
+Éditer `.env` selon le mode souhaité :
 ```
+# Local
+AI_PROVIDER=ollama
+
+# Ou Gemini API
 AI_PROVIDER=gemini
 GEMINI_API_KEY=your_key_here
+
+# Ou Groq API pour le chat + Gemini pour les embeddings RAG
+AI_PROVIDER=groq
+GROQ_API_KEY=your_groq_key
+EMBEDDING_PROVIDER=gemini
+GEMINI_API_KEY=your_gemini_key
 ```
 
 ### 6. Générer les données fictives
@@ -257,7 +286,7 @@ enterprise-ai-accounting-finance-assistant/
 ├── src/                                # Code source
 │   ├── __init__.py
 │   ├── config.py                       # Configuration settings
-│   ├── llm_provider.py                 # Abstraction LLM (Gemini/Groq)
+│   ├── llm_provider.py                 # Abstraction LLM (Ollama/Gemini/Groq)
 │   ├── security.py                     # Sécurité et secrets
 │   ├── data_loader.py                  # Chargement données CSV
 │   ├── rag_pipeline.py                 # Pipeline RAG complet
@@ -347,10 +376,23 @@ enterprise-ai-accounting-finance-assistant/
 
 ### Changer le provider LLM
 ```env
-# Utiliser Groq à la place
+# Utiliser Ollama local
+AI_PROVIDER=ollama
+OLLAMA_MODEL=mistral
+
+# Utiliser Gemini API
+AI_PROVIDER=gemini
+GEMINI_API_KEY=your_gemini_key
+GEMINI_MODEL=gemini-2.5-flash
+
+# Utiliser Groq API pour le chat
 AI_PROVIDER=groq
-GROQ_API_KEY=your_key_here
+GROQ_API_KEY=your_groq_key
 GROQ_MODEL=llama-3.3-70b-versatile
+
+# Recommandé avec Groq pour garder le RAG en mode API
+EMBEDDING_PROVIDER=gemini
+GEMINI_API_KEY=your_gemini_key
 ```
 
 ### Personnaliser les paramètres

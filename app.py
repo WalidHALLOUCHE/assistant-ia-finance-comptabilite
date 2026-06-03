@@ -147,7 +147,8 @@ def render_home():
     
     Assistant IA pour la comptabilité, finance et contrôle de gestion:
     
-    - **100% Open-Source**: Ollama (local, sans dépendances propriétaires)
+    - **Mode local**: Ollama (open-source, sans dépendances API)
+    - **Mode API**: Gemini ou Groq via clé API
     - **Connaissance métier**: Intègre procédures via RAG
     - **Données temps réel**: Connecté aux données financières
     - **Gouvernance**: Architecture prête pour déploiement entreprise
@@ -155,8 +156,8 @@ def render_home():
     
     #### Technologies
     - **Frontend**: Streamlit
-    - **LLM**: Ollama (open-source, local)
-    - **Embeddings**: Nomic Embed Text (open-source)
+    - **LLM**: Ollama local, Gemini API ou Groq API
+    - **Embeddings**: Ollama/Nomic Embed Text ou Gemini Embeddings
     - **RAG**: ChromaDB + LangChain
     - **Analytics**: Pandas, Plotly
     - **Données**: Fictives, universelles et réalistes
@@ -604,8 +605,8 @@ def render_commentary():
     budget_analysis = finance.get_cost_center_analysis().to_dict("records")
     _, _, issues = quality.run_all_checks()
     
-    # Allow user to choose whether to use the local Ollama LLM (may be slow)
-    use_llm = st.checkbox("Utiliser Ollama local pour générer le commentaire (peut être lent)", value=False)
+    # Allow user to choose whether to use the configured LLM (may be slow).
+    use_llm = st.checkbox("Utiliser le modèle IA configuré pour générer le commentaire (peut être lent)", value=False)
 
     with st.spinner("📝 Génération du commentaire..."):
         commentary = generator.generate_commentary(
@@ -650,12 +651,12 @@ def main():
         st.markdown("---")
         st.markdown("### ⚙️ Configuration")
         
-        # Check API
+        # Check selected AI provider
         is_valid, message = settings.validate_ai_configuration()
         if is_valid:
-            st.success("✅ Ollama local configuré")
+            st.success(f"✅ {message}")
         else:
-            st.error("❌ Ollama local non configuré")
+            st.error(f"❌ {message}")
     
     # Page routing
     if page == "🏠 Accueil":
