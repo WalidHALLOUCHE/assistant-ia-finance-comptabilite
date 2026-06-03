@@ -13,6 +13,21 @@
 
 ![Chat IA](assets/screenshots/02_chat_ia.png)
 
+## APIs IA utilisées
+
+L'assistant peut fonctionner avec deux fournisseurs IA :
+
+- **Gemini API** : fournisseur principal recommandé pour le chat, le RAG et les embeddings.
+- **Groq API** : fournisseur optionnel en fallback pour garder l'assistant disponible si Gemini n'est pas configuré.
+
+Configuration dans `.env` :
+
+```env
+AI_PROVIDER=gemini
+GEMINI_API_KEY=your_gemini_key
+GROQ_API_KEY=your_groq_key
+```
+
 ## 🎯 Objectif du Projet
 
 Ce projet démontre comment **créer et déployer une IA métier d'entreprise** pour assister une Direction Administrative et Financière (DAF) sur :
