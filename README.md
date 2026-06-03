@@ -1,6 +1,6 @@
 # 🏛️ Assistant IA Finance et Comptabilité
 
-**Assistant IA pour la comptabilité, la finance et le contrôle de gestion**
+**Assistant IA pour la comptabilité, la finance et le contrôle de gestion. Cette application utilise les APIs Gemini ou Groq pour fournir une intelligence artificielle avancée, ainsi qu'un mode local via Ollama.**
 
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -12,6 +12,10 @@
 ![Accueil](assets/screenshots/01_accueil.png)
 
 ![Chat IA](assets/screenshots/02_chat_ia.png)
+
+![Chat IA - API Gemini](assets/screenshots/03_chat_ia_api_gemini.png)
+
+![Chat IA - API Groq](assets/screenshots/04_chat_ia_api_groq.png)
 
 ## Modes IA disponibles
 
