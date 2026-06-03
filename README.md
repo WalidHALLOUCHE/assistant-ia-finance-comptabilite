@@ -1,3 +1,34 @@
+## Captures d'écran
+
+### 01. Accueil
+![Accueil](assets/screenshots/01_accueil.png)
+
+### 02. Chat IA
+![Chat IA](assets/screenshots/02_chat_ia.png)
+
+### 03. Chat IA API Gemini
+![Chat IA API Gemini](assets/screenshots/03_chat_ia_api_gemini.png)
+
+### 04. Chat IA API Groq
+![Chat IA API Groq](assets/screenshots/04_chat_ia_api_groq.png)
+
+### 05. Analyse comptable
+![Analyse comptable](assets/screenshots/05_analyse_comptable.png)
+
+### 06. Fournisseurs
+![Fournisseurs](assets/screenshots/06_fournisseurs.png)
+
+### 07. Trésorerie
+![Trésorerie](assets/screenshots/07_tresorerie.png)
+
+### 08. Budget réel
+![Budget réel](assets/screenshots/08_budget_reel.png)
+
+### 09. Qualité des données
+![Qualité des données](assets/screenshots/09_qualite_donnees.png)
+
+### 10. Commentaire de gestion
+![Commentaire de gestion](assets/screenshots/10_commentaire_gestion.png)
 # 🏛️ Assistant IA Finance et Comptabilité
 
 **Assistant IA pour la comptabilité, la finance et le contrôle de gestion. Cette application utilise les APIs Gemini ou Groq pour fournir une intelligence artificielle avancée, ainsi qu'un mode local via Ollama.**
@@ -193,8 +224,8 @@ Ollama pour le mode local, ou une clé API Gemini/Groq pour le mode cloud
 
 ### 1. Cloner le projet
 ```bash
-git clone https://github.com/username/enterprise-ai-accounting-finance-assistant.git
-cd enterprise-ai-accounting-finance-assistant
+git clone https://github.com/WalidHALLOUCHE/assistant-ia-finance-comptabilite.git
+cd assistant-ia-finance-comptabilite
 ```
 
 ### 2. Créer un environnement Python
@@ -279,7 +310,7 @@ L'app s'ouvre automatiquement sur http://localhost:8501
 ## 📊 Structure des Fichiers
 
 ```
-enterprise-ai-accounting-finance-assistant/
+assistant-ia-finance-comptabilite/
 │
 ├── README.md                           # Ce fichier
 ├── requirements.txt                    # Dépendances
@@ -445,7 +476,6 @@ az containerapp create --name finance-assistant \
 streamlit run app.py
 
 # Production (avec Gunicorn)
-gunicorn --workers 4 app:app
 ```
 
 ## 🔒 Sécurité

@@ -1,6 +1,6 @@
 # Makefile for Enterprise AI Accounting & Finance Assistant
 
-.PHONY: help install install-dev run test verify clean lint format
+.PHONY: help install install-dev run test clean lint format
 
 help:
 	@echo "📋 Available Commands:"
@@ -10,7 +10,6 @@ help:
 	@echo "  make run           - Run Streamlit app"
 	@echo "  make test          - Run tests"
 	@echo "  make test-cov      - Tests with coverage"
-	@echo "  make verify        - Verify setup"
 	@echo "  make generate-data - Generate demo financial data"
 	@echo "  make build-rag     - Build RAG vector store"
 	@echo "  make lint          - Run linting checks"
@@ -33,9 +32,6 @@ test:
 
 test-cov:
 	pytest tests/ -v --cov=src --cov-report=html
-
-verify:
-	python verify_setup.py
 
 generate-data:
 	python scripts/generate_demo_data.py
