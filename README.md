@@ -7,6 +7,16 @@
 [![Streamlit](https://img.shields.io/badge/Framework-Streamlit-red)](https://streamlit.io/)
 [![Gemini API](https://img.shields.io/badge/AI-Gemini%20%2B%20Groq-yellow)](https://ai.google.dev/)
 
+## Sommaire
+
+- [Galerie des captures](#galerie-des-captures)
+- [Modes IA disponibles](#modes-ia-disponibles)
+- [Objectif du projet](#objectif-du-projet)
+- [Pourquoi ce projet ?](#pourquoi-ce-projet)
+- [Fonctionnalités clés](#fonctionnalites-cles)
+- [Architecture](#architecture)
+- [Démarrage rapide](#démarrage-rapide)
+
 ## Galerie des captures
 
 Les captures ci-dessous suivent le parcours réel de l'application, de l'accueil aux analyses métier. Chaque image illustre un écran important et le rôle qu'il joue dans l'assistant.
