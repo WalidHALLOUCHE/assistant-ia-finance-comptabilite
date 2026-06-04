@@ -1,34 +1,3 @@
-## Captures d'écran
-
-### 01. Accueil
-![Accueil](assets/screenshots/01_accueil.png)
-
-### 02. Chat IA
-![Chat IA](assets/screenshots/02_chat_ia.png)
-
-### 03. Chat IA API Gemini
-![Chat IA API Gemini](assets/screenshots/03_chat_ia_api_gemini.png)
-
-### 04. Chat IA API Groq
-![Chat IA API Groq](assets/screenshots/04_chat_ia_api_groq.png)
-
-### 05. Analyse comptable
-![Analyse comptable](assets/screenshots/05_analyse_comptable.png)
-
-### 06. Fournisseurs
-![Fournisseurs](assets/screenshots/06_fournisseurs.png)
-
-### 07. Trésorerie
-![Trésorerie](assets/screenshots/07_tresorerie.png)
-
-### 08. Budget réel
-![Budget réel](assets/screenshots/08_budget_reel.png)
-
-### 09. Qualité des données
-![Qualité des données](assets/screenshots/09_qualite_donnees.png)
-
-### 10. Commentaire de gestion
-![Commentaire de gestion](assets/screenshots/10_commentaire_gestion.png)
 # 🏛️ Assistant IA Finance et Comptabilité
 
 **Assistant IA pour la comptabilité, la finance et le contrôle de gestion. Cette application utilise les APIs Gemini ou Groq pour fournir une intelligence artificielle avancée, ainsi qu'un mode local via Ollama.**
@@ -38,15 +7,59 @@
 [![Streamlit](https://img.shields.io/badge/Framework-Streamlit-red)](https://streamlit.io/)
 [![Gemini API](https://img.shields.io/badge/AI-Gemini%20%2B%20Groq-yellow)](https://ai.google.dev/)
 
-## Aperçu rapide
+## Galerie des captures
+
+Les captures ci-dessous suivent le parcours réel de l'application, de l'accueil aux analyses métier. Chaque image illustre un écran important et le rôle qu'il joue dans l'assistant.
+
+### 1. Accueil
+Point d'entrée principal de l'application, avec une vue claire des modules et du positionnement de l'assistant.
 
 ![Accueil](assets/screenshots/01_accueil.png)
 
+### 2. Chat IA
+Interface de conversation centrale pour poser des questions métier en langage naturel.
+
 ![Chat IA](assets/screenshots/02_chat_ia.png)
 
-![Chat IA - API Gemini](assets/screenshots/03_chat_ia_api_gemini.png)
+### 3. Chat IA avec Gemini
+Même parcours conversationnel, ici illustré avec le moteur Gemini pour les réponses enrichies.
 
-![Chat IA - API Groq](assets/screenshots/04_chat_ia_api_groq.png)
+![Chat IA API Gemini](assets/screenshots/03_chat_ia_api_gemini.png)
+
+### 4. Chat IA avec Groq
+Version du chat branchée sur Groq, utile pour comparer les comportements et performances des providers.
+
+![Chat IA API Groq](assets/screenshots/04_chat_ia_api_groq.png)
+
+### 5. Analyse comptable
+Vue d'analyse dédiée à la comptabilité générale, pour contrôler les écritures et repérer les anomalies.
+
+![Analyse comptable](assets/screenshots/05_analyse_comptable.png)
+
+### 6. Fournisseurs
+Espace de suivi du cycle fournisseurs, des factures aux indicateurs de paiement.
+
+![Fournisseurs](assets/screenshots/06_fournisseurs.png)
+
+### 7. Trésorerie
+Tableau de bord trésorerie pour suivre les flux, les soldes et la visibilité de cash.
+
+![Trésorerie](assets/screenshots/07_tresorerie.png)
+
+### 8. Budget réel
+Module de contrôle de gestion pour comparer le budget au réel et lire les écarts.
+
+![Budget réel](assets/screenshots/08_budget_reel.png)
+
+### 9. Qualité des données
+Vue de gouvernance des données avec score qualité, alertes et pistes de correction.
+
+![Qualité des données](assets/screenshots/09_qualite_donnees.png)
+
+### 10. Commentaire de gestion
+Génération automatique d'un commentaire de gestion structuré, prêt pour un reporting DAF.
+
+![Commentaire de gestion](assets/screenshots/10_commentaire_gestion.png)
 
 ## Modes IA disponibles
 
@@ -100,7 +113,7 @@ Ce projet démontre comment **créer et déployer une IA métier d'entreprise** 
 - Appliquer les règles de contrôle comptable automatiquement
 - Analyser budget vs réel et détecter les écarts
 - Générer des commentaires de gestion contextualisés
- - Concevoir des tableaux de bord financiers clairs et actionnables
+- Concevoir des tableaux de bord financiers clairs et actionnables
 
 **📊 Intelligence Métier**
 - Analyser les données financières et identifier les anomalies
